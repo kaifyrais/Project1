@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <style>
+    :root {
+      --bg: #0d0f1a;
+      --card: rgba(255, 255, 255, 0.06);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --text: #f4f5fb;
+      --muted: #a3a8c3;
+      --accent: #7c5cff;
+      --accent-2: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      z-index: 0;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .blob.one   { width: 420px; height: 420px; background: var(--accent);   top: -120px; left: -80px; }
+    .blob.two   { width: 360px; height: 360px; background: var(--accent-2); bottom: -140px; right: -60px; animation-delay: -6s; }
+    .blob.three { width: 300px; height: 300px; background: #ff5c8a;          top: 40%; left: 60%; animation-delay: -12s; }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(40px, -30px, 0) scale(1.15); }
+    }
+
+    nav.site {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+    }
+    nav.site a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 8px 18px;
+      border-radius: 999px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    nav.site a:hover { color: var(--text); }
+    nav.site a[aria-current="page"] {
+      color: #fff;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      padding: 56px 64px;
+      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: min(460px, 90vw);
+      animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(120deg, #fff 10%, var(--accent-2) 50%, var(--accent) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% auto;
+      animation: shine 6s linear infinite;
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    p.sub {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    form {
+      margin-top: 28px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-2);
+      background: rgba(255, 255, 255, 0.07);
+    }
+    textarea { resize: vertical; min-height: 110px; }
+
+    button {
+      margin-top: 4px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      background-size: 160% auto;
+      transition: background-position 0.4s ease, transform 0.1s ease;
+    }
+    button:hover { background-position: right center; }
+    button:active { transform: translateY(1px); }
+
+    .note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--accent-2);
+      min-height: 1.2em;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
+
+  <nav class="site">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+
+  <main class="card">
+    <span class="eyebrow">Contact</span>
+    <h1>Say hello back</h1>
+    <p class="sub">Drop a note and it'll land right here in the browser.</p>
+
+    <form id="contact-form">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Send message</button>
+    </form>
+    <p class="note" id="note" role="status"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const note = document.getElementById('note');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      note.textContent = `Thanks, ${name || 'friend'} — your message is noted!`;
+      form.reset();
+    });
+  </script>
+</body>
+</html>

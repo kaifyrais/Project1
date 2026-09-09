@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello, World</title>
+  <title>About</title>
   <style>
     :root {
       --bg: #0d0f1a;
@@ -29,7 +29,6 @@
       position: relative;
     }
 
-    /* Animated aurora blobs in the background */
     .blob {
       position: absolute;
       border-radius: 50%;
@@ -45,6 +44,37 @@
     @keyframes drift {
       from { transform: translate3d(0, 0, 0) scale(1); }
       to   { transform: translate3d(40px, -30px, 0) scale(1.15); }
+    }
+
+    nav.site {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+    }
+    nav.site a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 8px 18px;
+      border-radius: 999px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    nav.site a:hover { color: var(--text); }
+    nav.site a[aria-current="page"] {
+      color: #fff;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
     }
 
     .card {
@@ -101,71 +131,9 @@
       margin-top: 18px;
       color: var(--muted);
       font-size: 1rem;
-      max-width: 42ch;
+      max-width: 46ch;
       margin-inline: auto;
-    }
-
-    .wave {
-      display: inline-block;
-      transform-origin: 70% 70%;
-      animation: wave 2.4s ease-in-out infinite;
-    }
-
-    @keyframes wave {
-      0%, 60%, 100% { transform: rotate(0deg); }
-      10%, 30%      { transform: rotate(16deg); }
-      20%, 40%      { transform: rotate(-8deg); }
-    }
-
-    .dot-row {
-      margin-top: 32px;
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-    }
-    .dot-row span {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--muted);
-      animation: pulse 1.4s ease-in-out infinite;
-    }
-    .dot-row span:nth-child(2) { animation-delay: 0.2s; }
-    .dot-row span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.25; transform: scale(0.8); }
-      50%      { opacity: 1; transform: scale(1); }
-    }
-
-    nav.site {
-      position: fixed;
-      top: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-    }
-    nav.site a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      padding: 8px 18px;
-      border-radius: 999px;
-      transition: color 0.2s ease, background 0.2s ease;
-    }
-    nav.site a:hover { color: var(--text); }
-    nav.site a[aria-current="page"] {
-      color: #fff;
-      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      line-height: 1.7;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -179,16 +147,20 @@
   <div class="blob three"></div>
 
   <nav class="site">
-    <a href="index.html" aria-current="page">Home</a>
-    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="about.html" aria-current="page">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 
   <main class="card">
-    <span class="eyebrow">A fresh start</span>
-    <h1>Hello, World <span class="wave">👋</span></h1>
-    <p class="sub">Your first page is live. Edit <strong>index.html</strong> and make it yours.</p>
-    <div class="dot-row"><span></span><span></span><span></span></div>
+    <span class="eyebrow">About</span>
+    <h1>Nice to meet you</h1>
+    <p class="sub">
+      This is a small static site put together with nothing but HTML and CSS.
+      It started as a "Hello, World" page and grew a couple of rooms. The look
+      leans on glassmorphism, soft aurora gradients, and gentle motion that
+      steps aside when you prefer reduced animation.
+    </p>
   </main>
 </body>
 </html>

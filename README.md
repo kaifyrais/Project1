@@ -1,6 +1,14 @@
 # Hello World
 
-A single-page "Hello, World" built with plain HTML and CSS, styled to look modern and creative.
+A small static site built with plain HTML and CSS, styled to look modern and creative.
+
+## Pages
+
+- `index.html` — the "Hello, World" landing page
+- `about.html` — a short about blurb
+- `contact.html` — a contact form that responds in the browser
+
+All three share a fixed pill navigation that links them together.
 
 ## Features
 
